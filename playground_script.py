@@ -324,6 +324,7 @@ callbacks = CallbackList(callbacks)
 model = SAC(
     policy=SACPolicy,
     env=train_env,
+    batch_size=512,
     tensorboard_log=str(trial_dir),
     verbose=2,
     device="auto",
@@ -342,7 +343,7 @@ if ckpt:
 
 
 # ===== Launch training =====
-total_timesteps = 3_000_000  # 1M steps
+total_timesteps = 1_000_000  # 1M steps
 model.learn(
     total_timesteps=total_timesteps,
     callback=callbacks,
